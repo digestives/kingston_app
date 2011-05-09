@@ -7,20 +7,22 @@ class PostsController < ApplicationController
   end
   
   def new
-  	@title = "New Post"
-  	@post = Post.new
-  	@post.published = true
+			@title = "New Post"
+			@post = Post.new
+			@post.published = true
   end
   
   def create 
-  	@post = current_user.posts.build(params[:post])
-  	if @post.save
-  		flash[:success] = "Post created!"
-  		redirect_to root_path
-  	else
-  		@title = "New Post"
-  		render 'new'
-  	end	
+			@post = current_user.posts.build(params[:post])		
+			
+			if @post.save
+				flash[:success] = "Post created!"
+				redirect_to root_path
+			else
+				@title = "New Post"
+				render 'new'
+			end	
+
   end
   
   def edit
@@ -38,6 +40,7 @@ class PostsController < ApplicationController
   		@title = "Edit Post"
   		render 'edit'
   	end
+  	
   end
 
 end

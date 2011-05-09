@@ -1,92 +1,98 @@
 <% if signed_in_and_admin? %>
 	
 		<div class="admin panel" style="float: right; border: 1px solid black; margin: 20px; padding: 20px; height: 250px;">
-			<h2>Admin Panel</h2>
-			<ul>
-				<li><%= link_to "Create Activity", new_activity_path %></li>
-				<li><%= link_to "Create Membership", new_membership_path %></li>
+			 <h2>Admin Panel</h2>
+			  <ul>
+				   <li><%= link_to "Create Activity", new_activity_path %></li>
+				   <li><%= link_to "Create Membership", new_membership_path %></li>
+			  </ul>
 		</div>
 		
-	<% end %>
-
+<% end %>
 
 <h1><%= @user.full_name %></h1>
 
 <div class="user panel" style="float: none;">
-<%= form_for(@user) do |f| %>
-	<div class="field">
-	<%= f.label :email %><br/>
-	<%= f.text_field :email, :disabled => true %>
-	</div>
 
-	<div class="field">
-	<%= f.label :address %><br/>
-	<%= f.text_area :address, :disabled => true %>
-	</div>
+   <%= form_for(@user) do |f| %>
+   
+	    <div class="field">
+	    <%= f.label :email %><br/>
+	    <%= f.text_field :email, :disabled => true %>
+    </div>
 
-	<div class="field">
-	<%= f.label :post_code %><br/>
-	<%= f.text_field :post_code, :disabled => true, :size => "10x1" %>
-	</div>
+    <div class="field">
+	    <%= f.label :address %><br/>
+	    <%= f.text_area :address, :disabled => true %>
+    </div>
+
+    <div class="field">
+	    <%= f.label :post_code %><br/>
+	    <%= f.text_field :post_code, :disabled => true, :size => "10x1" %>
+    </div>
 	
-<% end %>
+   <% end %>
 	
-	<h1>Booking History</h1>
-	<ul>
-		<% @user.bookings.each do |booking| %>
+	  <h1>Booking History</h1>
+	  <ul>
+		  <% @user.bookings.each do |booking| %>
+			
+			  <li>Booking number: <%= booking.id %></li></br>
+			  <ul>	
+				  <li>Activity: <%= booking.activity.title %> | <%= booking.activity.id %></li>
+				  <li>Starts: <%= booking.activity.start.strftime("%x %X %p") %></li><br/>
+				  <li>Ends: <%= booking.activity.end.strftime("%x %X %p") %></li><br/>			
+				  <li>Others who booked this activity:</li>
+				  <ul>
+					  <% booking.activity.users.each do |booker| %>
+						  <% if booker != @user %> 
+						  <li><%= link_to booker.name, user_path(booker) %></li>
+						  <% end %>
+					  <% end %>
+				  </ul>
+			  </ul>	
+		  <% end %>
+	  </ul>
+
+	  <table>		
+		  <tr>
+			  <th>No</th>
+			  <th>Activity</th>
+			  <th>Start</td>
+			  <th>End</td>
+			  <th>Others who booked</th>
+		  </tr>
+		  <% @user.bookings.each do |booking| %>
+		  <tr class="<%= cycle('odd', 'even') %>" style="text-align: right;">
+			  <td><%= booking.id %></td>
+			  <td><%= booking.activity.title %><td/>
+			  <td><%= booking.activity.start.strftime("%x %X %p") %></td>
+			  <td><%= booking.activity.end.strftime("%x %X %p") %></td>
+			  <td>
+				  <ul>
+					  <% booking.activity.users.each do |booker| %>
+						  <% if booker != @user %> 
+						   <li><%= link_to booker.name, user_path(booker) %></li>
+						  <% end %>
+					  <% end %>
+				  </ul>
+			  </td>		
+		  </tr>
+		  <% end %>
+	  </table>
 	
-			<li>Booking number: <%= booking.id %></li></br>
-			<ul>	
-				<li>Activity: <%= booking.activity.title %> | <%= booking.activity.id %></li>
-				<li>Starts: <%= booking.activity.start.strftime("%x %X %p") %></li><br/>
-				<li>Ends: <%= booking.activity.end.strftime("%x %X %p") %></li><br/>			
-				<li>Others who booked this activity:</li>
-				<ul>
-					<% booking.activity.users.each do |booker| %>
-						<% if booker != @user %> 
-						<li><%= link_to booker.name, user_path(booker) %></li>
-						<% end %>
-					<% end %>
-				</ul>
-			</ul>
-		
-		<% end %>
-	</ul>
-	
-	<table>		
-		<tr>
-			<th>No</th>
-			<th>Activity</th>
-			<th>Start</td>
-			<th>End</td>
-			<th>Others who booked</th>
-		</tr>
-		<% @user.bookings.each do |booking| %>
-		<tr class="<%= cycle('odd', 'even') %>" style="text-align: right;">
-			<td><%= booking.id %></td>
-			<td><%= booking.activity.title %><td/>
-			<td><%= booking.activity.start.strftime("%x %X %p") %></td>
-			<td><%= booking.activity.end.strftime("%x %X %p") %></td>
-			<td>
-				<ul>
-					<% booking.activity.users.each do |booker| %>
-						<% if booker != @user %> 
-						<li><%= link_to booker.name, user_path(booker) %></li>
-						<% end %>
-					<% end %>
-				</ul>
-			</td>		
-		</tr>
-		<% end %>
-	</table>
-	
-	<% if @user.has_subscription? %>
-		<h2>Your membership details:</h2>				
-					<%= render 'memberships/membership' %>				
-					<%= link_to "Cancel Membership", cancel_membership_path(@membership), :confirm => "Are you sure?" %>			
-	<% else %>
-		<h3><%= link_to "Purchase", memberships_path %> a membership!</h3>
-	<% end %>
+	  <% if @user.has_subscription? %>
+	  
+		  <h2>Your membership details:</h2>				
+					  
+					  <%= render 'memberships/membership' %>	
+					  <h3><%= link_to "Cancel Membership", cancel_membership_path(@membership), :confirm => "Are you sure?" %></h3>
+					  		
+	  <% else %>
+	  
+		  <h3><%= link_to "Purchase", memberships_path %> a membership!</h3>
+		  
+	  <% end %>
 	
 </div>
 	

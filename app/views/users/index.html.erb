@@ -1,5 +1,4 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>Users</h1>
 
 <table>
 		<tr>
@@ -8,11 +7,10 @@
 			<th>Profile</th>
 		</tr>
 		<% @users.each do |user| %>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td><%= user.full_name %></td>
-			<td><%= user.email %></td>
-			<td><%= link_to user_path(user), user %></td>
-		</tr>
-		</div>
+		 <tr class="<%= cycle('odd', 'even') %>">
+			  <td><%= user.full_name %></td>
+			  <td><%= user.email %></td>
+			  <td><%= link_to user_path(user), user %></td>
+		 </tr>
 		<% end %>
-	</table>
+</table>

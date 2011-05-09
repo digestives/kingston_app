@@ -20,9 +20,11 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	
 	validates :user_id, :presence => true
- 	validates :title, :content, :presence => true
- 	validates :title, :length => { :minimum => 3, 
- 																 :maximum => 100 }
+	
+ validates :title,   :content, :presence => true
+ 
+ validates :title,   :length => { :minimum => 3, 
+ 																                 :maximum => 100 }
 
 	
 end

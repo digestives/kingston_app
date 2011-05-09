@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
   
   def update
-  	@user = User.find(params[:id])
+  		@user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Account updated."
       redirect_to @user
@@ -59,14 +59,14 @@ class UsersController < ApplicationController
   		flash[:notice] = "You must cancel your current membership before purchasing another."
   		redirect_to current_user
   	else
-			#current_user.membership << Membership.find_by_id(params[:purchase]) 	
-			#match '/memberships/:id/purchase' => 'users#purchase', :as => :purchase
-			membership = Membership.find_by_id(params[:id])		
-			# MY GOD THIS IS STARTING TO GET CONFUSING
-			current_user.create_subscription(:membership => membership)	
-			flash[:success] = "Thank you for purchasing a membership."		
-			redirect_to current_user
-		end
+				#current_user.membership << Membership.find_by_id(params[:purchase]) 	
+				#match '/memberships/:id/purchase' => 'users#purchase', :as => :purchase
+				membership = Membership.find_by_id(params[:id])		
+				# MY GOD THIS IS STARTING TO GET CONFUSING
+				current_user.create_subscription(:membership => membership)	
+				flash[:success] = "Thank you for purchasing a membership."		
+				redirect_to current_user
+			end
   end
   
   def cancel_membership
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   	else
   		flash[:error] = "Please contact customer support."
   	end
-  	redirect_to current_user
+  		redirect_to current_user
   end
   
   def swimming_booking
