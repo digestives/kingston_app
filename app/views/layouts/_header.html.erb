@@ -1,0 +1,23 @@
+<header>
+	<nav>
+		<%= link_to logo, root_path %>
+		  <ul>
+		  	<% if signed_in? %>
+		  	<li><%= link_to_unless_current 'Home', user_path(current_user) %></li>
+		  	<% else %>
+		    <li><%= link_to_unless_current 'Home', root_path %></li>
+		   	<% end %>
+		   	<li><%= link_to_unless_current 'Memberships', memberships_path %></li>
+		    <li><%= link_to_unless_current 'About', about_path %></li>
+		    <li><%= link_to_unless_current 'Contact', contact_path %></li>
+		    <% if signed_in? %>
+		    <li><%= link_to_unless_current "Make Booking", activities_path %></li>
+		    <li><%= link_to_unless_current "News", posts_path %></li>
+		    <li><%= link_to_unless_current "Edit", edit_user_path(current_user) %></li>
+		    <li><%= link_to_unless_current "Sign out", signout_path %></li>
+		    <% else %>
+		    <li><%= link_to_unless_current 'Sign up', signup_path %></li>
+		    <% end %>
+		  </ul>
+	<nav>
+</header>

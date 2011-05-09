@@ -1,0 +1,103 @@
+
+body {
+	background: rgb(0, 155, 255);
+}
+
+nav a {
+	font-size: 120%;
+	color: white;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.container {
+  width: 750px;
+}
+
+section {
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background: white;
+  margin-top: 1em;
+  padding: 20px;
+}
+
+.flash {
+	text-align: center;
+	font-weight: bold;
+}
+
+.field {
+	padding: 5px;
+}
+
+.field textarea {
+	width: 150px; 
+	height: 100px; 
+	padding:5px;
+}
+
+.actions {
+	margin: 10px 10px 10px 10px;
+}
+
+
+footer, header {
+	margin: 10px;
+	text-align: center;
+}
+
+
+footer nav ul, header nav ul {
+	list-style: none;
+}
+
+footer nav ul li, header nav ul li {
+	display: inline;
+	margin: 0px 30px 0px 0px;
+}
+
+
+.field_with_errors input {
+	background: #fbe3e4;
+	color: #8a1f11;
+	border-color: #fbc2c4;
+}
+
+#error_explanation p {
+	color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul {
+	list-style-type: square;
+}
+
+#error_explanation ul li {
+	font-weight: bold;
+}
+
+#memberships table table {
+	border: 1px solid black;
+}
+
+table tr.even {
+background: white;
+}
+
+table tr.odd {
+background: #e5ecf9;
+}
+
+.bookings table {
+
+}
+
+
+
+

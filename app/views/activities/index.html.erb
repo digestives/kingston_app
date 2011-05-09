@@ -1,0 +1,76 @@
+<h1>Activities</h1>
+
+<% @activities.each do |activity| %>
+
+	<div style="background-color:<%= cycle('#e7e4f9', '#f9f2e4') -%>;">
+		
+		<h1><%= activity.title %> | <%= activity.id %></h1>
+		<p>Description: <%= activity.description %></p>	
+		<table>
+			<tr>
+				<th>Starts</th>
+				<th>Ends</th>
+				<th>Current Bookings</th>
+			</tr>
+			<tr>
+				<td><%= (activity.start).strftime("%x %X %p") %></td>
+				<td><%= activity.end.strftime("%x %X %p") %></td>
+				<td><%= activity.users.count %> / <%= activity.limit %></td>
+			</tr>
+		</table>
+	
+		<%# @attendees = 0 %>
+		<%# session.users.each do |user| %>
+			<%# if !user.sessions.bookings.guests.nil? %>
+			<%# @attendees = @attendees + user.sessions.bookings.guests %>
+			<%# end %>
+		<%# end %>
+	
+		<% activity.users.each do |user| %>
+			<%# user.bookings.find_by_activity_id(activity.id).activity.title %>
+		<% end %>
+	
+		<% if current_user.can_book? %>
+		
+			<% if activity.users.count < activity.limit %> <%# || @attendees < session.limit %>
+				<h3><%= link_to "Book this session!", book_swimming_path(:id => activity.id) %></h3>
+			<% else %>
+				<h3>This activity has reached its maximum capacity, sorry for any inconvenience.</h3>
+			<% end %>
+		
+		<% else %>
+			<% if current_user.has_subscription? %>
+			<h3>Your <%= link_to "current membership", membership_path(current_user.membership) %> does not have privileges for booking at the pool.</h3>
+			<% else %>
+			<h3>You must purchase a <%= link_to "membership", memberships_path %> with pool privileges to make bookings.</h3>
+			<% end %>
+		<% end %>
+
+	</div>
+
+<% end %>
+
+<%= form_for(:activity, :url => { :action => 'create' } ) do |f| %>
+
+	<%= f.label :title %><br/>
+	<%= f.text_field :title %>
+	<br/>
+	<%= f.label :description %><br/>
+	<%= f.text_field :description %><br/>
+	
+	<br/>
+	<%= f.label :start %><br/>
+	<%= datetime_select("activity", "start", :default => Date.current, :order => [:day, :month, :year]) %>
+	<br/>
+	
+	<br/>
+	<%= f.label :end %><br/>
+	<%= datetime_select("activity", "end", :default => Date.current, :order => [:day, :month, :year]) %>
+	<br/>
+	<br/>
+	<%= f.label :limit %><br/>
+	<%= f.select :limit, Activity::LIMIT, :prompt => "Max Swimmers" %><br/>
+	<br/>
+	<%= f.submit "Create Activity" %>
+	
+<% end %>

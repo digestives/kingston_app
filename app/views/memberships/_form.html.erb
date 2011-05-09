@@ -1,0 +1,66 @@
+	<%= form_for @membership do |f| %>
+	
+	<% if @membership.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@membership.errors.count, "error") %> 
+						  prohibited this membership from being saved:</h2>
+					<p>There were problems with the following fields:</p>
+					<ul>
+					<% @membership.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
+	
+	<div style="float: right; margin-right: 150px; line-height: 3em;">
+				<div class="field">
+					<%= f.label :pool %>
+					<%= f.check_box :pool %>
+				</div>
+		
+				<div class="field">
+					<%= f.label :tennis %>
+					<%= f.check_box :tennis %>
+				</div>
+				
+						
+				<div class="field">
+					<%= f.label :sauna %>
+					<%= f.check_box :sauna %>
+				</div>
+		
+				<div class="field">
+				  <%= f.label :guests, "Guests Allowed: " %>
+				  <%= f.select :guests, Membership::NUM_GUESTS_ALLOWED, :prompt => "None" %><br/>
+				 </div>
+	 </div>
+	 
+	 <div style="float: none;">
+
+				<div class="field">
+					<%= f.label :name %></br>
+					<%= f.text_field :name %>
+				</div>
+	
+				<div class="field">
+					<%= f.label :description %><br/>
+					<%= f.text_area :description %>
+				</div>
+
+	
+			
+			
+
+		<div class="field">
+			<%= f.label :fee %><br/>
+			<%= f.text_field :fee %>
+		</div>
+	
+		<div class="actions">
+			<%= f.submit "Create Membership" %>
+		</div><br/>
+		
+		</div>
+
+	<% end %>

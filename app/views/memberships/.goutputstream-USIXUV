@@ -1,0 +1,24 @@
+<h1>Memberships!</h1>
+	
+	<table border="1">
+		<tr>
+			<th>Membership Title</th>
+			<th>Description</th>
+			<th>Monthly Fee</th>
+		</tr>
+		<% @memberships.each do |membership| %>
+		<div class="<%= cycle('odd', 'even') %>">
+		<tr>
+			<td><%= membership.name %></td>
+			<td><%= membership.description %></td>
+			<td><%= membership.fee %></td>
+		</tr>
+		</div>
+		<% end %>
+	</table>
+
+
+
+
+
+

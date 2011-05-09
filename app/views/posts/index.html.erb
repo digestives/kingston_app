@@ -1,0 +1,40 @@
+<h1>News</h1>
+
+<% if signed_in_and_admin? %>
+	<h3>Add News</h3>
+	<%= render :partial => 'form' %>
+<% end %>
+
+<% unless @posts.empty? %>
+	
+		<%= will_paginate %>
+
+		<% @posts.each do |post| %>
+
+				<% if post.published || signed_in_and_admin? -%>
+				<!-- Begin Post -->
+				<div class="box">
+				<h2><%= post.title %></h2>
+				<p><%= post.content %></p>
+				<%# http://railsapi.com/doc/ruby-v1.9.2/classes/Date.html#M004849 %>
+				<%# http://railsforum.com/viewtopic.php?id=988 %>
+				<p>Published by <%= link_to post.user.full_name, post.user %> on <%= post.created_at.strftime("%x %X") %>.</p>
+			
+				<% if signed_in_and_admin? %>
+					<p>[<%= link_to "EDIT", edit_post_path(post) %>] | [<%= link_to "DELETE", post_path(post), :method => :delete %>] | 
+					Published: <% if post.published %>
+												<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
+										<% else %>
+												<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
+										<% end %></p>
+				<% end %>
+				</div>
+				<!-- End Post -->
+				<% end %>
+		<% end %>
+		
+		<%= will_paginate %>
+		
+<% end %>
+
+

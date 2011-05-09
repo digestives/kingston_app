@@ -1,0 +1,59 @@
+<% if signed_in_and_admin? %>
+	
+	<h2>Create Membership</h2>
+
+	<%= render :partial => "form" %>
+
+<% end %>
+
+
+
+<h1>Memberships</h1>
+
+	<div id="memberships">
+	<table>
+		<tr>
+			<th>Membership Title</th>
+			<th>Description and privileges</th>
+			<th>Monthly Fee</th>
+		</tr>	
+		<% @memberships.each do |membership| %>
+			<tr class="<%= cycle('odd', 'even') -%>">
+				<td><%= membership.name %></td>
+				<td>
+					<%= membership.description %>						
+					<% @privileges = { :pool => membership.pool, :sauna => membership.sauna, :tennis => membership.tennis, :guests => membership.guests } %>
+					<table>
+					 	<% @privileges.each do |key, value| %>
+						 	<tr style="background-color:<%= cycle('#e7e4f9', '#f9f2e4', :name => 'rows') -%>;">
+							 <td><%= key.capitalize %></td>
+								 <td>
+									 	<% if value %>
+									 				<% if value == membership.guests and value > 0 %>
+														<%= value %>
+													<% elsif value == membership.guests and value < 1 %>
+														<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
+												  <% else %>
+												 	 <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
+												 	<% end %>
+										<% else %>
+													<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
+										<% end %>			
+								 </td>
+							</tr>
+						<% end %>	
+						<% reset_cycle("row") %>		
+				 </table>
+				</td>
+				<td>&pound; <%= membership.fee %> p/m<br/><%= link_to "Purchase!", purchase_membership_path(membership) %></td>
+			</tr>		
+		<% end %>	
+		</div>
+	</table>
+
+
+
+
+
+
+
