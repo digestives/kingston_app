@@ -17,27 +17,26 @@
    <%= form_for(@user) do |f| %>
    
 	    <div class="field">
-	    <%= f.label :email %><br/>
-	    <%= f.text_field :email, :disabled => true %>
-    </div>
+	        <%= f.label :email %><br/>
+	        <%= f.text_field :email, :disabled => true %>
+        </div>
 
-    <div class="field">
-	    <%= f.label :address %><br/>
-	    <%= f.text_area :address, :disabled => true %>
-    </div>
+        <div class="field">
+	        <%= f.label :address %><br/>
+	        <%= f.text_area :address, :disabled => true %>
+        </div>
 
-    <div class="field">
-	    <%= f.label :post_code %><br/>
-	    <%= f.text_field :post_code, :disabled => true, :size => "10x1" %>
-    </div>
+        <div class="field">
+	        <%= f.label :post_code %><br/>
+	        <%= f.text_field :post_code, :disabled => true, :size => "10x1" %>
+        </div>
 	
    <% end %>
 	
 	  <h1>Booking History</h1>
 	  <ul>
-		  <% @user.bookings.each do |booking| %>
-			
-			  <li>Booking number: <%= booking.id %></li></br>
+		  <% @user.bookings.each do |booking| %>		
+	        <li>Booking number: <%= booking.id %></li></br>
 			  <ul>	
 				  <li>Activity: <%= booking.activity.title %> | <%= booking.activity.id %></li>
 				  <li>Starts: <%= booking.activity.start.strftime("%x %X %p") %></li><br/>
@@ -50,7 +49,7 @@
 						  <% end %>
 					  <% end %>
 				  </ul>
-			  </ul>	
+			   </ul>	
 		  <% end %>
 	  </ul>
 
