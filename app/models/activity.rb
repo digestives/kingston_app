@@ -15,24 +15,18 @@
 
 class Activity < ActiveRecord::Base
 
-	LIMIT = [5, 10, 15, 20, 25, 30,
-					 35, 40, 45, 50, 55, 60,
-					 65, 70, 75, 80, 85, 90,
-					 95, 100]
-
+	LIMIT = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
 
 	has_many :bookings
 	has_many :users, :through => :bookings
-	
+
 	validates :limit, :presence => true,
-										:inclusion => { :in => LIMIT },
-										:allow_blank => false # must be an amount of users 
-										
+	  :inclusion => { :in => LIMIT },
+	  :allow_blank => false
+
 	validates :start, :presence => true
-	
+
 	validates :end, :presence => true
-	
-
-
 
 end
+
