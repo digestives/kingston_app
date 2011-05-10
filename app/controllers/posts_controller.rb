@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 		@post = current_user.posts.build(params[:post])
 		if @post.save
 			flash[:success] = "Post created!"
-		  redirect_to root_path
+		  redirect_to posts_path
     else
 		  @title = "New Post"
 		  render 'new'
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   	@post = Post.find(params[:id])
   	if @post.update_attributes(params[:post])
   		flash[:notice] = "Post #{@post.id} Updated"
-  		redirect_to root_path
+  		redirect_to posts_path
   	else
   		@title = "Edit Post"
   		render 'edit'
