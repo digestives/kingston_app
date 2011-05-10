@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_filter :authenticate, :only => [:index, :edit, :update, :destroy, :new]
-  before_filter :admin_user,   :only => [:new, :edit, :update, :destroy]
+  before_filter :admin_user,   :only => [:new, :edit, :update, :destroy, :create]
 
   def index
     @title = "News"
