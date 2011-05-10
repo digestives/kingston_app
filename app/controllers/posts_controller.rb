@@ -49,7 +49,7 @@ class PostsController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_path) unless current_user.signed_in_and_admin?
+      redirect_to(root_path) unless signed_in_and_admin?
     end
 
 
