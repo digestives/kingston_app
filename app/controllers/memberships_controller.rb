@@ -1,5 +1,8 @@
 class MembershipsController < ApplicationController
 
+  before_filter :authenticate, :except => [:index]
+  before_filter :admin_user,   :only => [:new, :edit, :update, :destroy]
+
   def index
   	@title = "Memberships"
   	@memberships = Membership.all
@@ -26,6 +29,16 @@ class MembershipsController < ApplicationController
   		render 'new'
   	end
   end
+
+  private
+
+    def authenticate
+      deny_access unless signed_in?
+    end
+
+    def admin_user
+      redirect_to(root_path) unless current_user.signed_in_and_admin?
+    end
 
 end
 
