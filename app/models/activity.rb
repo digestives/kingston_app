@@ -24,9 +24,14 @@ class Activity < ActiveRecord::Base
 	  :inclusion => { :in => LIMIT },
 	  :allow_blank => false
 
+  validates :end, :presence => true
 	validates :start, :presence => true
 
-	validates :end, :presence => true
+	validates :start, :timeliness => { :before => :end,
+	   :before_message => "activity must end before it started" }
+
+
+
 
 end
 
