@@ -22,8 +22,8 @@ section {
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 	background: white;
-  margin-top: 1em;
-  padding: 20px;
+	margin-top: 1em;
+	padding: 20px;
 }
 
 .flash {
@@ -36,8 +36,8 @@ section {
 }
 
 .field textarea {
-	width: 150px; 
-	height: 100px; 
+	width: 150px;
+	height: 100px;
 	padding:5px;
 }
 
@@ -70,8 +70,8 @@ footer nav ul li, header nav ul li {
 
 #error_explanation p {
 	color: #333;
-  margin-bottom: 0;
-  padding: 5px;
+	margin-bottom: 0;
+	padding: 5px;
 }
 
 #error_explanation ul {
@@ -87,17 +87,10 @@ footer nav ul li, header nav ul li {
 }
 
 table tr.even {
-background: white;
+	background: white;
 }
 
 table tr.odd {
-background: #e5ecf9;
+	background: #e5ecf9;
 }
-
-.bookings table {
-
-}
-
-
-
 

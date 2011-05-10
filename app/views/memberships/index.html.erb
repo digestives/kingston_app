@@ -25,17 +25,7 @@
 						 	<tr style="background-color:<%= cycle('#e7e4f9', '#f9f2e4', :name => 'rows') -%>;">
 							 <td><%= key.capitalize %></td>
 								 <td>
-									 	<% if value %>
-									 		<% if value == membership.guests and value > 0 %>
-												<%= value %>
-										  <% elsif value == membership.guests and value < 1 %>
-												<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
-										  <% else %>
-												<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
-											<% end %>
-										<% else %>
-											<%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
-										<% end %>
+									 	<%= display_privilege(value, membership) %>
 								 </td>
 							</tr>
 						<% end %>

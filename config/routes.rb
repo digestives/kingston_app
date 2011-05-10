@@ -1,9 +1,5 @@
 KingstonApp::Application.routes.draw do
 
-  get "activities/new"
-  get "activities/index"
-
-  # Map to HTTP Requests
   resources :users
 	resources :sessions, :only => [:new, :create, :destroy]
 	resources :posts
@@ -21,33 +17,29 @@ KingstonApp::Application.routes.draw do
   get "pages/contact"
   get "pages/terms"
   get "pages/help"
-  
+
   get "posts/new"
   get "memberships/new"
   get "memberships/show"
-   
-  get "swimming/new"
-  get "swimming/index"
-  
-  # creating a route through the pages controller actions
+
+  get "activities/new"
+  get "activities/index"
+
   match '/about' 	 => 'pages#about'
   match '/contact' => 'pages#contact'
   match '/help' 	 => 'pages#help'
   match '/tos' 	 	 => 'pages#terms'
-  
-  
-  match '/signup'  => 'users#new'
-  match '/signout' => 'sessions#destroy' # destroy action to delete cookie
-  match '/signin'  => 'sessions#new' # new action to render signin form
-  
-  #Example Purchase
-  match '/memberships/:id/purchase' => 'users#purchase_membership', :as => :purchase_membership
 
+  match '/signup'  => 'users#new'
+  match '/signout' => 'sessions#destroy'
+  match '/signin'  => 'sessions#new'
+
+  match '/memberships/:id/purchase' => 'users#purchase_membership', :as => :purchase_membership
 	match '/memberships/:id/cancel' => 'users#cancel_membership', :as => :cancel_membership
-	
-	match '/swimming/:id/booking' => 'users#swimming_booking', :as => :book_swimming
-	
-	match '/swimming/:id/booking' => 'users#cancel_booking', :as => :cancel_swimming
+	match '/activities/:id/booking' => 'users#swimming_booking', :as => :book_swimming
+	match '/activities/:id/booking' => 'users#cancel_booking', :as => :cancel_swimming
+
+  root :to => 'pages#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -99,12 +91,12 @@ KingstonApp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
-  
-  root :to => 'pages#index'
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+
 end
+
