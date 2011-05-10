@@ -1,0 +1,12 @@
+= Kingston Leisure
+
+* Source:  http://github.com/pjmagee/Kingston
+
+
+== Description
+
+Kingston Leisure is a rails 3 application for the design workshop 2 module at Kingston University.
+A website which allows users to register, view swimming pool sessions and make bookings. Select
+from a range of memberships, which offer different privileges. See news updates about Kingston
+Leisure such as events, membership deals and important information.
+
