@@ -27,8 +27,8 @@ class Activity < ActiveRecord::Base
   validates :end, :presence => true
 	validates :start, :presence => true
 
-	validates :start, :timeliness => { :before => :end,
-	   :before_message => "activity must end before it started" }
+  validates :start, :timeliness => { :on => :create, :on_or_after => Time.current }
+	validates :end, :timeliness => { :after => :start }
 
 
 
