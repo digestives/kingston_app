@@ -14,6 +14,10 @@ module SessionsHelper
 		@current_user = user
 	end
 
+	def current_user?(user)
+    current_user == user
+  end
+
 	def current_user
 		@current_user ||= User.find_by_id(session[:user_id])
 	end
@@ -25,6 +29,11 @@ module SessionsHelper
 	def signed_in_and_admin?
 		!current_user.nil? && current_user.admin
 	end
+
+	def deny_access
+	  flash[:notice] = "Please sign in."
+    redirect_to signin_path
+  end
 
 end
 

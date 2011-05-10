@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
 
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy, :new]
+  before_filter :admin_user,   :only => [:new, :edit, :update, :destroy]
+
   def index
     @title = "News"
     @posts = Post.paginate(:page => params[:page], :per_page => 5)
@@ -38,6 +41,17 @@ class PostsController < ApplicationController
   		render 'edit'
   	end
   end
+
+  private
+
+    def authenticate
+      deny_access unless signed_in?
+    end
+
+    def admin_user
+      redirect_to(root_path) unless current_user.signed_in_and_admin?
+    end
+
 
 end
 
