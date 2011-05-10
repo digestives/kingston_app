@@ -4,16 +4,17 @@ module ApplicationHelper
 
 	def title
 		base = "Kingston Leisure"
-		
+
 		if @title.nil?
 			base
 		else
 			"#{base} | #{@title}"
 		end
 	end
-	
+
 	def logo
 		image_tag("logo.png", :alt => "Kingston Leisure")
 	end
 
 end
+

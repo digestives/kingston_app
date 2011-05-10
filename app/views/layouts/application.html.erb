@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- application helper method called -->
   <title><%= title %></title>
   <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
   <%= stylesheet_link_tag 'personal' %>
@@ -10,28 +9,20 @@
 </head>
 <body>
 	<div class="container">
-		<!-- http://railsapi.com/doc/rails-v3.0.7/classes/ActionView/Rendering.html -->
-		<%= render :partial => 'layouts/header' %>
-			
-		<!-- Blueprint offers a .success, .info, and .error style 
-				 which will go well with our flash messages such as
-				 adding news, deleting news, creating, destroying users -->
-		
-		<!-- http://api.rubyonrails.org/classes/ActionDispatch/Flash/FlashHash.html -->
-	
+		<%# http://railsapi.com/doc/rails-v3.0.7/classes/ActionView/Rendering.html %>
+		<%= render 'layouts/header' %>
+		<%# http://api.rubyonrails.org/classes/ActionDispatch/Flash/FlashHash.html %>
 		<section>
 		<% flash.each do |key, value| %>
 			<%= content_tag :div, value, :class => "flash #{key}" %>
 		<% end %>
-		<%= yield %>	
+		<%= yield %>
 		</section>
-		
 		<!-- http://api.rubyonrails.org/classes/ActionView/Helpers/DebugHelper.html#method-i-debug -->
 		<%= debug(params) if Rails.env.development? %>
-		<%= debug(session) if Rails.env.development? %>	
-		<!-- Footer -->
-		<%= render :partial => 'layouts/footer' %>
-		<!-- end footer -->
+		<%= debug(session) if Rails.env.development? %>
+		<%= render 'layouts/footer' %>
 	</div>
 </body>
 </html>
+

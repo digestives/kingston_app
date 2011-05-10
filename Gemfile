@@ -5,26 +5,26 @@ source 'http://rubygems.org'
 # Rspec for Rails 3
 # http://relishapp.com/rspec/
 #
-gem 'rails', '3.0.7' # rails 3 latest
-gem 'sqlite3' # to use with our sqlite3 database
-gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3' # driver like JDBC
+gem 'rails', '3.0.7'
+gem 'sqlite3'
+gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
 gem 'will_paginate', '3.0.pre2'
 
-# for our development environment
+# http://relishapp.com/rspec/rspec-rails
 
 group :development do
-	# http://relishapp.com/rspec/rspec-rails
-  gem 'rspec-rails', '2.5.0' # instead of rails test:unit 
-  gem 'annotate-models' # inserts schema information into our models
-  gem 'faker', '0.9.5' # generate fake information for tests
+	
+  gem 'rspec-rails', '2.5.0'
+  gem 'annotate-models'
+  gem 'faker', '0.9.5'
 end
 
-# only in our testing environment
+# for testing https://github.com/brynary/webrat
 
 group :test do
-  gem 'rspec', '2.5.0' # rspec instead of test:unit
-  gem 'webrat', '0.7.1' # for testing https://github.com/brynary/webrat
-  gem 'factory_girl_rails', '1.0' # to test models
+  gem 'rspec', '2.5.0'
+  gem 'webrat', '0.7.1' 
+  gem 'factory_girl_rails', '1.0'
 end
 
 # Bundle edge Rails instead:

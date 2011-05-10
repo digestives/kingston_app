@@ -3,11 +3,11 @@
 		<th>Membership Title</th>
 		<th>Description and privileges</th>
 		<th>Monthly Fee</th>
-	</tr>	
+	</tr>
 		<tr>
 			<td><%= @membership.name %></td>
 			<td>
-				<%= @membership.description %>						
+				<%= @membership.description %>
 	    		<% @privileges = { :pool => @membership.pool, :sauna => @membership.sauna, :tennis => @membership.tennis, :guests => @membership.guests } %>
 			    <table>
 			     	<% @privileges.each do |key, value| %>
@@ -15,22 +15,23 @@
 					     <td><%= key.capitalize %></td>
 						     <td>
 							     <% if value %>
-							     	<% if value == @membership.guests and value > 0 %>
+							     	  <% if value == @membership.guests and value > 0 %>
 									    <%= value %>
-									    <% elsif value == @membership.guests and value < 1 %>
+									  <% elsif value == @membership.guests and value < 1 %>
 									    <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
-									    <% else %>
+									   <% else %>
 									    <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
 								    <% end %>
 							    <% else %>
 								    <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
-							    <% end %>			
+							    <% end %>
 							 </td>
 					    </tr>
-				    <% end %>	
-				    <% reset_cycle("row") %>		
-	        	 </table>
+				    <% end %>
+				    <% reset_cycle("row") %>
+	        </table>
 		    </td>
 		<td>&pound; <%= @membership.fee %> p/m</td>
-	</tr>		
+	</tr>
 </table>
+

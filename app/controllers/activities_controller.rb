@@ -2,7 +2,6 @@ class ActivitiesController < ApplicationController
 
   def index
 		@activities = Activity.all
-		@date = Date.today
 	end
 	
 	def show

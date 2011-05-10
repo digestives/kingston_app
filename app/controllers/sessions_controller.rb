@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
-  
+
   def new
   	@title = "Sign up"
   end
-  
+
   def create
 		if user = User.authenticate(params[:session][:email], params[:session][:password])
 			sign_in(user)
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 			render 'new'
 		end
 	end
-	
+
 	def destroy
 		flash[:notice] = "#{current_user.forename} signed out."
 		sign_out
@@ -22,3 +22,4 @@ class SessionsController < ApplicationController
 	end
 
 end
+

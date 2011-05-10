@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  
+
   def index
   	@title = "Index"
   end
@@ -21,3 +21,4 @@ class PagesController < ApplicationController
   end
 
 end
+
