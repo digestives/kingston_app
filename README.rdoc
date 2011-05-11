@@ -1,6 +1,6 @@
 = Kingston Leisure
 
-* Source:  http://github.com/pjmagee/Kingston
+* Source:  http://github.com/pjmagee/kingston_app
 
 
 == Description
