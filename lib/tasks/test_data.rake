@@ -5,24 +5,58 @@ namespace :db do
   desc "Fill database with sample data"
 
   task :populate => :environment do
+
     Rake::Task['db:reset'].invoke
     make_admin
     make_users
     make_memberships
     make_posts
+
   end
 
   def make_admin
-  	admin = User.create!(:organisation => "",
-  										 	 :forename => "Patrick",
-  										   :surname => "Magee",
-                         :email => "k0956921@kingston.ac.uk",
-                         :address => "12 Tyrell Court\nNorth Street\nCarshalton\nSurrey",
-                         :post_code => "SM5 2HT",
-                         :password => "password",
-                         :password_confirmation => "password",
-                         :terms_of_service => "1")
-  	admin.toggle!(:admin)
+
+    address   = [rand(300), Faker::Address.street_name].join(" ")
+		address   << "\n" << Faker::Address.city << "\n"
+		post_code = "SM5 2HT" # Cant find a decent generator for this...
+		terms_of_service = "1"
+		password  = "password"
+
+    admin = User.create!(:organisation => "",
+		  						 :forename => "admin",
+		  						 :surname => "user",
+		               :email => "admin@email.com",
+		               :address => address,
+		               :post_code => post_code,
+		               :password => password,
+		               :password_confirmation => password,
+		               :terms_of_service => terms_of_service)
+    admin.toggle!(:admin)
+
+
+    3.times do |n|
+      forename  = Faker::Name.first_name
+		  surname 	= Faker::Name.last_name
+		  email     = Faker::Internet.email([forename, surname].join("."))
+		  address   = [rand(300), Faker::Address.street_name].join(" ")
+		  address   << "\n" << Faker::Address.city << "\n"
+		  post_code = "SM5 2HT" # Cant find a decent generator for this...
+		  terms_of_service = "1"
+		  password  = "password"
+
+      admin = User.create!(:organisation => "",
+		  						 :forename => forename,
+		  						 :surname => surname,
+		               :email => email,
+		               :address => address,
+		               :post_code => post_code,
+		               :password => password,
+		               :password_confirmation => password,
+		               :terms_of_service => terms_of_service)
+
+      admin.toggle!(:admin)
+    end
+
   end
 
   def make_users
@@ -50,16 +84,17 @@ namespace :db do
 	end
 
 	def make_posts
-		user = User.first
+		users = User.find_all_by_admin(true)
 
-		30.times do
-			title = Faker::Company.catch_phrase
-			body  = Faker::Lorem.paragraph(2)
-			published = true
+    users.each do |user|
+		  5.times do
+			  title = Faker::Company.catch_phrase
+			  body  = Faker::Lorem.paragraph(2)
+			  published = true
 
-			user.posts.create!(:title => title, :content => body, :published => published)
+			  user.posts.create!(:title => title, :content => body, :published => published)
+      end
 		end
-
 	end
 
 	def make_memberships
