@@ -1,0 +1,26 @@
+9d6bc0b4b28a7ef35b4e5348da5a2a45f2e8959b improved the view of posts, if the post was published by the user who is logged in, it will say 'published by you', otherwise 'published by user'
+67da4d29d922a82129ae5ca34b74fff465d60717 Merge pull request #1 from digestives/master
+71ffddcc055c3578075418c04073ad8dbe61099e message
+20ff2ce039b571587b58965830c5337004f43707 updated source link in readme
+4ce12a395675588abfa0d0a4a7870a191a062159 Read Me File
+e3d10e30ff8d08024d4b7e9a0f94f497d76e4fb1 confirm popup before destroying a post
+5d26615293e7afcea9817dbf9b8c3aa6151ee2d9 Posts can now be deleted by admins
+f94a738f19cae174a96fc7c21434c1110588f75a Validates start time must be todays date or after
+6c4b92eda18b463b212f7100c8cfa7d8cf23c06a Added timeliness gem for date validations, an activity start date must come come before the end date
+2bf12af4845a3fe84297d7526d59c6e6d9dfc1bc Creating and Editing posts now redirects to the posts index, not the root path
+8aa588b838c371034e333cff750ad57c2969e3a8 Fixed before_filter admin_user function, should be signed_in_and_admin? not current_user.signed_in_and_admin?
+a47881995aa166b08b80f48184b0997bd20b8d70 Added create to the before_filter admin_user
+3b0882f54090b608860797c460eaf88bba24f73d Added before_filter to memberships controller, memberships index is public but now user must be admin for new and create
+54d4bb34478eca3898b87719f00530b6bd6a1361 Adding before_filters for authentication to users and posts controller
+54704717347eca63be6cc0092961883c8ec87a35 comments in membership helper
+504b84ae9ab9f409dfb2e32e1bd9c2ee455fb227 Formatting changes
+1b9cbd9c976459b3580fc2e20618a8d8a045893a Added memberships helper for memberships index view
+d1f11a97fa2d568e2b578fd9adc79428995ed20d Formatting Booking Model
+ee3606b2559693b31ffdf5886172158e489020ad Formatting Booking Model
+875e4b75238d5e1c2ea4a26e7d9193407cc49cfc Formatting changes
+2dd7f057db0a0627f5215935f00e406de10b36e2 Formatting changes
+41e0aa15aa9b5084dbcb6392dc1ece77000e8d05 Added missing migration file
+5fd0c71cf6824ac48ac6d4279810322763007727 Formatting changes
+019c48a2cf5bfe220a44d1b8d0847c75cf9e0f54 Formatting changes
+afbf27ec1ca43219420dd6ffde8e1fe695d5dc4b Inital Commit
+3073aea6e67bdf57817af2f3ee30c5095416473d first commit
