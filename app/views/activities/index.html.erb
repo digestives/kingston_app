@@ -1,37 +1,16 @@
 
 <% if signed_in_and_admin? %>
-
-  <h2> Add an Activity </h2>
-  <%= form_for(:activity, :url => { :action => 'create' } ) do |f| %>
-
-	  <%= f.label :title %><br/>
-	  <%= f.text_field :title %>
-	  <br/>
-	  <%= f.label :description %><br/>
-	  <%= f.text_field :description %><br/>
-
-	  <br/>
-	  <%= f.label :start %><br/>
-	  <%= datetime_select("activity", "start", :default => Date.current, :order => [:day, :month, :year]) %>
-	  <br/>
-
-	  <br/>
-	  <%= f.label :end %><br/>
-	  <%= datetime_select("activity", "end", :default => Date.current, :order => [:day, :month, :year]) %>
-	  <br/>
-	  <br/>
-	  <%= f.label :limit %><br/>
-	  <%= f.select :limit, Activity::LIMIT, :prompt => "Max Swimmers" %><br/>
-	  <br/>
-	  <%= f.submit "Create Activity" %><br/><br/>
-
-  <% end %>
-
+  <p><%= link_to "Add An Activity", new_activity_path %></p>
 <% end %>
 
 
 
 <h1>Activities</h1>
+
+<% if @activities.empty? %>
+<h2>Sorry, there are no activities to book.</h2>
+<% end %>
+
 
 <% @activities.each do |activity| %>
 

@@ -30,6 +30,21 @@
 <% if signed_in_and_admin? %>
 <!-- Admin View -->
 
+<h1>Your Posts</h1>
+
+<% @user.posts.each do |post| %>
+  <h2><%= post.title %></h2>
+  <p><%= post.content %></p>
+  <p>
+					        [<%= link_to "EDIT", edit_post_path(post) %>] | [<%= link_to "DELETE", post_path(post), :method => :delete, :confirm => "Are you sure?" %>] |
+					        Published:  <% if post.published %>
+									        <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
+							            <% else %>
+									        <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
+								        <% end %>
+						</p>
+<% end %>
+
 <% else %>
 	  <h1>Booking History</h1>
 	  <ul>
