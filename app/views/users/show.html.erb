@@ -1,5 +1,11 @@
 <h1><%= @user.full_name %></h1>
 
+<% if signed_in? %>
+  <% if current_user?(@user) %>
+  <h3><%= link_to_unless_current "Edit Account", edit_user_path(current_user) %></h3>
+  <% end %>
+<% end %>
+
 <div class="user panel" style="float: none;">
 
    <%= form_for(@user) do |f| %>
@@ -18,7 +24,6 @@
 	        <%= f.label :post_code %><br/>
 	        <%= f.text_field :post_code, :disabled => true, :size => "10x1" %>
         </div>
-
   <% end %>
 </div>
 

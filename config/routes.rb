@@ -39,6 +39,8 @@ KingstonApp::Application.routes.draw do
 	match '/activities/:id/booking' => 'users#swimming_booking', :as => :book_swimming
 	match '/activities/:id/booking' => 'users#cancel_booking', :as => :cancel_swimming
 
+  match '/admin' => 'users#admin_panel'
+
   root :to => 'pages#index'
 
   # The priority is based upon order of creation:

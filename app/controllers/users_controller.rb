@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
   before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => [:index, :destroy]
+  before_filter :admin_user,   :only => [:index, :destroy, :admin_panel]
 
   def index
   	@users = User.all
@@ -50,6 +50,10 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_path
+  end
+
+  def admin_panel
+    @title = "Admin"
   end
 
   #

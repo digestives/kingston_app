@@ -4,6 +4,9 @@
 		  <ul>
 		  	<% if signed_in? %>
 		  	<li><%= link_to_unless_current 'Home', user_path(current_user) %></li>
+            <% if current_user.admin? %>
+            <li><%= link_to 'Admin', admin_path %></li>
+            <% end %>
 		  	<% else %>
 		    <li><%= link_to_unless_current 'Home', root_path %></li>
 		   	<% end %>
@@ -13,7 +16,6 @@
 		    <% if signed_in? %>
 		    <li><%= link_to_unless_current "Activities", activities_path %></li>
 		    <li><%= link_to_unless_current "News", posts_path %></li>
-		    <li><%= link_to_unless_current "Edit", edit_user_path(current_user) %></li>
 		    <li><%= link_to_unless_current "Sign out", signout_path %></li>
 		    <% else %>
 		    <li><%= link_to_unless_current 'Sign up', signup_path %></li>
