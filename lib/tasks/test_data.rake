@@ -97,6 +97,7 @@ namespace :db do
 		end
 	end
 
+=begin
 	def make_memberships
 
 		5.times do |n|
@@ -119,6 +120,7 @@ namespace :db do
 												 :fee => fee)
 		end
 	end
+=end
 
 end
 

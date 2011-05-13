@@ -5,3 +5,44 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+		  Membership.create!(:name => "Pool",
+												 :description => "Unlimited Pool",
+												 :sauna => false,
+												 :pool => true,
+												 :tennis => false,
+												 :guests => 0,
+												 :fee => "4.99")
+
+		  Membership.create!(:name => "Pool and Sauna",
+												 :description => "Unlimited Pool with sauna",
+												 :sauna => true,
+												 :pool => true,
+												 :tennis => false,
+												 :guests => false,
+												 :fee => "8.99")
+
+		  Membership.create!(:name => "Silver",
+												 :description => "Unlimited Pool with sauna and guest",
+												 :sauna => true,
+												 :pool => true,
+												 :tennis => false,
+												 :guests => true,
+												 :fee => "15.99")
+
+			Membership.create!(:name => "Gold",
+												 :description => "Unlimited Pool with sauna and tennis",
+												 :sauna => true,
+												 :pool => true,
+												 :tennis => true,
+												 :guests => false,
+												 :fee => "19.99")
+
+      Membership.create!(:name => "Platinum",
+												 :description => "Unlimited Pool with sauna and tennis and guest",
+												 :sauna => true,
+												 :pool => true,
+												 :tennis => true,
+												 :guests => true,
+												 :fee => "25.99")
+
