@@ -31,30 +31,23 @@
 			</tr>
 		</table>
 
-		<%# @attendees = 0 %>
-		<%# session.users.each do |user| %>
-			<%# if !user.sessions.bookings.guests.nil? %>
-			<%# @attendees = @attendees + user.sessions.bookings.guests %>
-			<%# end %>
-		<%# end %>
-
-		<% activity.users.each do |user| %>
-			<%# user.bookings.find_by_activity_id(activity.id).activity.title %>
-		<% end %>
-
-		<% if current_user.can_book? %>
-			<% if activity.users.count < activity.limit %> <%# || @attendees < session.limit %>
-				<h3><%= link_to "Book this session!", book_swimming_path(:id => activity.id) %></h3>
-			<% else %>
-				<h3>This activity has reached its maximum capacity, sorry for any inconvenience.</h3>
-			<% end %>
-		<% else %>
-			<% if current_user.has_subscription? %>
-			<h3>Your <%= link_to "current membership", membership_path(current_user.membership) %> does not have privileges for booking at the pool.</h3>
-			<% else %>
-			<h3>You must purchase a <%= link_to "membership", memberships_path %> with pool privileges to make bookings.</h3>
-			<% end %>
-		<% end %>
+    <% if signed_in_and_admin? %>
+        <%= link_to "Delete Activity", activity_path(activity), :method => :delete, :confirm => "Are you sure?" %>
+    <% else %>
+		  <% if current_user.can_book? %>
+			  <% if activity.users.count < activity.limit %> <%# || @attendees < session.limit %>
+				  <h3><%= link_to "Book this session!", book_swimming_path(:id => activity.id) %></h3>
+			  <% else %>
+				  <h3>This activity has reached its maximum capacity, sorry for any inconvenience.</h3>
+			  <% end %>
+		  <% else %>
+			  <% if current_user.has_subscription? %>
+			  <h3>Your <%= link_to "current membership", membership_path(current_user.membership) %> does not have privileges for booking at the pool.</h3>
+			  <% else %>
+			  <h3>You must purchase a <%= link_to "membership", memberships_path %> with pool privileges to make bookings.</h3>
+			  <% end %>
+		  <% end %>
+     <% end %>
 
 	</div>
 

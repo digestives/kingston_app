@@ -27,24 +27,22 @@
   <% end %>
 </div>
 
-<% if signed_in_and_admin? %>
 <!-- Admin View -->
+<% if signed_in_and_admin? %>
+
 
 <h1>Your Posts</h1>
 
 <% @user.posts.each do |post| %>
   <h2><%= post.title %></h2>
   <p><%= post.content %></p>
-  <p>
-					        [<%= link_to "EDIT", edit_post_path(post) %>] | [<%= link_to "DELETE", post_path(post), :method => :delete, :confirm => "Are you sure?" %>] |
-					        Published:  <% if post.published %>
-									        <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
-							            <% else %>
-									        <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
-								        <% end %>
-						</p>
-<% end %>
-
+  <p>[<%= link_to "EDIT", edit_post_path(post) %>] | [<%= link_to "DELETE", post_path(post), :method => :delete, :confirm => "Are you sure?" %>] |
+		Published:  <% if post.published %>
+									  <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/tick.png") %>
+							  <% else %>
+									  <%= image_tag("/stylesheets/blueprint/plugins/buttons/icons/cross.png") %>
+								<% end %></p>
+  <% end %>
 <% else %>
 	  <h1>Booking History</h1>
 	  <ul>
@@ -65,32 +63,6 @@
 			   </ul>
 		  <% end %>
 	  </ul>
-	  <table>
-		  <tr>
-			  <th>No</th>
-			  <th>Activity</th>
-			  <th>Start</td>
-			  <th>End</td>
-			  <th>Others who booked</th>
-		  </tr>
-		  <% @user.bookings.each do |booking| %>
-		  <tr class="<%= cycle('odd', 'even') %>" style="text-align: right;">
-			  <td><%= booking.id %></td>
-			  <td><%= booking.activity.title %><td/>
-			  <td><%= booking.activity.start.strftime("%x %X %p") %></td>
-			  <td><%= booking.activity.end.strftime("%x %X %p") %></td>
-			  <td>
-				  <ul>
-					  <% booking.activity.users.each do |booker| %>
-						  <% if booker != @user %>
-						   <li><%= link_to booker.full_name, user_path(booker) %></li>
-						  <% end %>
-					  <% end %>
-				  </ul>
-			  </td>
-		  </tr>
-		  <% end %>
-	  </table>
 
   <% if @user.has_subscription? && !@user.admin? %>
     <h2>Your membership details:</h2>
