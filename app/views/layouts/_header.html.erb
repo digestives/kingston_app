@@ -11,7 +11,7 @@
 		    <li><%= link_to_unless_current 'About', about_path %></li>
 		    <li><%= link_to_unless_current 'Contact', contact_path %></li>
 		    <% if signed_in? %>
-		    <li><%= link_to_unless_current "Make Booking", activities_path %></li>
+		    <li><%= link_to_unless_current "Activities", activities_path %></li>
 		    <li><%= link_to_unless_current "News", posts_path %></li>
 		    <li><%= link_to_unless_current "Edit", edit_user_path(current_user) %></li>
 		    <li><%= link_to_unless_current "Sign out", signout_path %></li>
