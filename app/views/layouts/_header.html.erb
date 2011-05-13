@@ -1,6 +1,10 @@
 <header>
 	<nav>
-		<%= link_to logo, root_path %>
+	  <% if signed_in? %>
+		    <%= link_to logo, user_path(current_user) %>
+		<% else %>
+		    <%= link_to logo, root_path %>
+	  <% end %>
 		  <ul>
 		  	<% if signed_in? %>
 		  	<li><%= link_to_unless_current 'Home', user_path(current_user) %></li>
