@@ -27,7 +27,7 @@
 												 :sauna => true,
 												 :pool => true,
 												 :tennis => false,
-												 :guests => true,
+												 :guests => 1,
 												 :fee => "15.99")
 
 			Membership.create!(:name => "Gold",
@@ -43,6 +43,6 @@
 												 :sauna => true,
 												 :pool => true,
 												 :tennis => true,
-												 :guests => true,
+												 :guests => 2,
 												 :fee => "25.99")
 
